@@ -1,0 +1,16 @@
+[Unit]
+Description=Telegram link -> smart summary -> back to channel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/telegram-summarizer
+ExecStart=/home/ubuntu/telegram-summarizer/.venv/bin/python -m app.main
+Restart=always
+RestartSec=5
+# Ensure `claude` on PATH (it lives in ~/.local/bin).
+Environment=PATH=/home/ubuntu/.local/bin:/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=default.target
